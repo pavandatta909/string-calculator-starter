@@ -19,8 +19,26 @@ class StringCalculatorShould {
     }
     
     @Test
-	 void string_with_two_number_should_return_number_as_int(){
+    void string_with_two_number_should_return_number_as_int(){
             StringCalculator stringCalculator = new StringCalculator();
 			assertEquals(3, StringCalculator.add("1,2"));
-		}
+    }
+	
+    @Test
+    void string_with_negative_number_should_return_number_as_int(){
+	    	try {
+				StringCalculator.add("-1,2");
+			}
+			catch (IllegalArgumentException e){
+				assertEquals(e.getMessage(), "Negatives not allowed: -1");
+			}
+
+			try {
+				StringCalculator.add("2,-4,3,-5");
+			}
+			catch (IllegalArgumentException e){
+				assertEquals(e.getMessage(), "Negatives not allowed: -4,-5");
+			}
+	    }
+
 }
